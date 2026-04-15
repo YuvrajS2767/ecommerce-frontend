@@ -66,8 +66,11 @@ const Orders = () => {
 
   const { authUser } = useSelector((state) => state.auth);
   const navigateTo = useNavigate();
-  if (!authUser) return navigateTo("/products");
-
+   useEffect(() => {
+  if (authUser === null) {
+    navigateTo("/products");
+  }
+}, [authUser]);
   return (
     <>
       <div className="min-h-screen pt-20">
