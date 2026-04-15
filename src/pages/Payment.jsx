@@ -46,19 +46,32 @@ const Payment = () => {
   }
 
   const handlePlaceOrder = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("full_name", shippingDetails.fullName);
-    formData.append("state", shippingDetails.state);
-    formData.append("city", shippingDetails.city);
-    formData.append("country", shippingDetails.country);
-    formData.append("address", shippingDetails.address);
-    formData.append("pincode", shippingDetails.zipCode);
-    formData.append("phone", shippingDetails.phone);
-    formData.append("orderedItems", JSON.stringify(cart));
+  e.preventDefault();
 
-    dispatch(placeOrder(formData));
-  };
+  if (
+    !shippingDetails.fullName ||
+    !shippingDetails.state ||
+    !shippingDetails.city ||
+    !shippingDetails.address ||
+    !shippingDetails.zipCode ||
+    !shippingDetails.phone
+  ) {
+    alert("Please provide complete shipping details.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("full_name", shippingDetails.fullName);
+  formData.append("state", shippingDetails.state);
+  formData.append("city", shippingDetails.city);
+  formData.append("country", shippingDetails.country);
+  formData.append("address", shippingDetails.address);
+  formData.append("pincode", shippingDetails.zipCode);
+  formData.append("phone", shippingDetails.phone);
+  formData.append("orderedItems", JSON.stringify(cart));
+
+  dispatch(placeOrder(formData));
+};
 
   if (cart.length === 0) {
     return (
@@ -188,23 +201,16 @@ const Payment = () => {
                           }}
                           className="w-full px-4 py-3 bg-secondary border border-border rounded-lg text-foreground"
                         >
-                          <option value="Karachi">Karachi</option>
-                          <option value="Punjab">Punjab</option>
-                          <option value="Sindh">Sindh</option>
-                          <option value="Balochistan">Balochistan</option>
-                          <option value="Khyber PakhtunKhwa (KPK)">
-                            Khyber PakhtunKhwa (KPK)
-                          </option>
-                          <option value="Islamabad Capital Territory">
-                            Islamabad Capital Territory
-                          </option>
-                          <option value="Azad Jammu And Kashmir (AJK)">
-                            Azad Jammu And Kashmir (AJK)
-                          </option>
-                          <option value="Gilgit Baltistan (GB)">
-                            Gilgit Baltistan (GB)
-                          </option>
-                        </select>
+                          <option value="">Select State</option>
+                          <option value="Uttar Pradesh">Uttar Pradesh</option>
+                          <option value="Delhi">Delhi</option>
+                          <option value="Maharashtra">Maharashtra</option>
+                          <option value="Karnataka">Karnataka</option>
+                          <option value="Tamil Nadu">Tamil Nadu</option>
+                          <option value="Gujarat">Gujarat</option>
+                          <option value="Rajasthan">Rajasthan</option>
+                          <option value="West Bengal">West Bengal</option>
+                             </select>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
@@ -343,7 +349,7 @@ const Payment = () => {
                             </p>
                           </div>
                           <p className="text-sm font-semibold">
-                            ${Number(item.product.price) * item.quantity}
+                            ₹{Number(item.product.price) * item.quantity}
                           </p>
                         </div>
                       );
@@ -353,12 +359,12 @@ const Payment = () => {
                   <div className="space-y-2 border-t border-[hsla(var(--glass-border))] pt-4">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Subtotal</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>₹{total.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Shipping</span>
                       <span className="text-green-500">
-                        {totalWithTax >= 50 ? "Free" : "$2"}
+                        {totalWithTax >= 50 ? "Free" : "₹2"}
                       </span>
                     </div>
 
@@ -369,7 +375,7 @@ const Payment = () => {
                     <div className="flex justify-between font-semibold text-lg pt-2 border-t border-[hsla(var(--glass-border))]">
                       <span>Total</span>
                       <span className="text-primary">
-                        ${totalWithTax.toFixed(2)}
+                        ₹{totalWithTax.toFixed(2)}
                       </span>
                     </div>
                   </div>
