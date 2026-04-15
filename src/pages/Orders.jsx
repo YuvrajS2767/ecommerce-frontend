@@ -152,7 +152,7 @@ const Orders = () => {
                         <div className="text-right">
                           <p className="text-sm text-muted-foreground">Total</p>
                           <p className="text-xl font-bold text-primary">
-                            ${order.total_price}
+                            ₹{order.total_price}
                           </p>
                         </div>
                       </div>
@@ -181,7 +181,7 @@ const Orders = () => {
                             </div>
                             <div className="text-right">
                               <p className="font-semibold text-foreground">
-                                ${item.price}
+                                ₹{item.price}
                               </p>
                             </div>
                           </div>
