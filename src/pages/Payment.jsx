@@ -15,7 +15,7 @@ const Payment = () => {
   const [stripePromise, setStripePromise] = useState(null);
   useEffect(() => {
     loadStripe(
-      "pk_live_51SgPD8Ku8ACKEOoQakhU4Z1Jb3GWuW66UhV5WKYF9rHh4acGcP4o1JVBj7BpEOLRI8ZveuyQcoFcRLrwc91Hvfg800adPjbyBs"
+      "pk_test_51SgPD8Ku8ACKEOoQreMkyEEwqXZ9L1W4gcccJmss5vksExFju7S9dPwsuBxZhclpQwcGvEL8z8NVBB260HeTizbK00pVtKLjqW"
     )
       .then((stripe) => setStripePromise(stripe))
       .catch((err) => console.log(err));
