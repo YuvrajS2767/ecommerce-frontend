@@ -97,10 +97,10 @@ export const deleteReview = createAsyncThunk(
 );
 
 export const fetchProductWithAI = createAsyncThunk(
-  "product/ai-search",
+  "product/ai",
   async (userPrompt, thunkAPI) => {
     try {
-      const res = await axiosInstance.post(`/product/ai-search`, {
+      const res = await axiosInstance.post(`/product/ai`, {
         userPrompt,
       });
       thunkAPI.dispatch(toggleAIModal());

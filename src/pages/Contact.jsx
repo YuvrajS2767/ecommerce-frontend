@@ -57,7 +57,7 @@ const Contact = () => {
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Address</h3>
                 <p className="text-muted-foreground">
-                  123 Shop Street, City, ST 12345
+                  123 Shop Street
                 </p>
               </div>
             </div>
