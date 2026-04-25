@@ -10,7 +10,7 @@ import { fetchAllProducts } from "../store/slices/productSlice";
 import { toggleAIModal } from "../store/slices/popupSlice";
 
 const Products = () => {
-  const { products, totalProducts, loading } = useSelector(
+  const { products, totalProducts, loading , isAIResult  } = useSelector(
     (state) => state.product
   );
 
@@ -45,6 +45,7 @@ const Products = () => {
 
   // ✅ Fetch products
   useEffect(() => {
+    if (isAIResult) return;
     dispatch(
       fetchAllProducts({
         category: selectedCategory,
@@ -64,6 +65,7 @@ const Products = () => {
     selectedRating,
     availability,
     currentPage,
+    isAIResult,
   ]);
 
   const totalPages = Math.ceil((totalProducts || 0) / 10);

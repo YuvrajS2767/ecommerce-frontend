@@ -118,6 +118,7 @@ export const fetchProductWithAI = createAsyncThunk(
 const productSlice = createSlice({
   name: "product",
   initialState: {
+    isAIResult: false,
     loading: false,
     products: [],
     productDetails: {},
@@ -140,6 +141,7 @@ const productSlice = createSlice({
         state.newProducts = action.payload.newProducts;
         state.topRatedProducts = action.payload.topRatedProducts;
         state.totalProducts = action.payload.totalProducts;
+        state.isAIResult = false;
       })
       .addCase(fetchAllProducts.rejected, (state) => {
         state.loading = false;
@@ -211,6 +213,7 @@ const productSlice = createSlice({
 
        state.products = products;
        state.totalProducts = products.length;
+       state.isAIResult = true;
 })
       .addCase(fetchProductWithAI.rejected, (state) => {
         state.aiSearching = false;
