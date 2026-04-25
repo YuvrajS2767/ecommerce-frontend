@@ -9,7 +9,7 @@ export const fetchAllProducts = createAsyncThunk(
   async (
     {
       availability = "",
-      price = "0-10000",
+      price = "0-100000",
       category = "",
       ratings = "",
       search = "",

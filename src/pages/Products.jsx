@@ -26,7 +26,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(
     searchedCategory || ""
   );
-  const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [priceRange, setPriceRange] = useState([0, 100000]);
   const [selectedRating, setSelectedRating] = useState(0);
   const [availability, setAvailability] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -99,7 +99,7 @@ const Products = () => {
                 <input
                   type="range"
                   min="0"
-                  max="10000"
+                  max="100000"
                   value={priceRange[1]}
                   onChange={(e) =>
                     setPriceRange([
