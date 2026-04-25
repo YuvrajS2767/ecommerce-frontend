@@ -106,10 +106,9 @@ export const fetchProductWithAI = createAsyncThunk(
       thunkAPI.dispatch(toggleAIModal());
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.message);
-      return thunkAPI.rejectWithValue(
-        error.response.data.message || "Failed to fetch AI Filtered products."
-      );
+      toast.error(
+      error?.response?.data?.message || "AI search failed"
+        );
     }
   }
 );
@@ -206,10 +205,13 @@ const productSlice = createSlice({
         state.aiSearching = true;
       })
       .addCase(fetchProductWithAI.fulfilled, (state, action) => {
-        state.aiSearching = false;
-        state.products = action.payload.products;
-        state.totalProducts = action.payload.products.length;
-      })
+      state.aiSearching = false;
+
+       const products = action.payload?.products || [];
+
+       state.products = products;
+       state.totalProducts = products.length;
+})
       .addCase(fetchProductWithAI.rejected, (state) => {
         state.aiSearching = false;
       });

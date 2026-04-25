@@ -19,7 +19,7 @@ const AISearchModal = () => {
   const dispatch = useDispatch();
   const handleSearch = (e) => {
     e.preventDefault();
-    dispatch(fetchProductWithAI(userPrompt));
+    dispatch(fetchProductWithAI(userPrompt.trim()));
   };
 
   if (!isAIPopupOpen) return null;
